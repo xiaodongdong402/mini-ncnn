@@ -18,8 +18,9 @@
 #include "gpu.h"
 #endif // NCNN_VULKAN
 
-
 #include "logger.h"
+#include "squeezenet_v1.h"
+
 
 using namespace std;
 
@@ -47,19 +48,9 @@ int main()
 
     LOGCC << "hello word from log!!!" <<endl;
     cout<<"hello word!!!"<<endl;
-
-    float a_data[] = {0.0,1.0,2.0,3.0,4.0};
-    float b_data[] = {4.0,3.0,2.0,1.0,0.0};
-    ncnn::Mat a(2,2,(void*)a_data);
-    ncnn::Mat b(2,2,(void*)b_data);
-    ncnn::Mat c(2,2);
-    binary_add(a,b,c);
-    float* c_data = (float*)c.data;
-    LOGCC << c_data[0] << endl;
-
-
-
-
+    
+    string imagepath = "/home/dzhang/rnet_test_img.jpg";
+    run_squeezenet_model(imagepath);
     
     return 0;
 }

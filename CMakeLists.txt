@@ -55,6 +55,8 @@ aux_source_directory(${CMAKE_SOURCE_DIR}/src MAIN_SRC)
 set(DIR_SRCS ${MAIN_SRC})
 
 
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 FIND_LIBRARY(STATIC_LIBS libncnn.a ${CMAKE_SOURCE_DIR}/lib)
 link_directories(${CMAKE_SOURCE_DIR}/lib)
@@ -81,7 +83,7 @@ add_executable(${EXEC_NAME} ${EXEC_SRC} ${DIR_SRCS})
 #cuda_add_library(${GPU_SHARE_LIB} SHARED ${DIR_GPU_SRCS}) #STATIC #SHARED
 #cuda_add_executable(${EXEC_NAME} ${EXEC_SRC} ${DIR_SRCS} ${DIR_GPU_SRCS})
 
-target_link_libraries(${EXEC_NAME} ${STATIC_LIBS} )
+target_link_libraries(${EXEC_NAME} ${STATIC_LIBS} ${OpenCV_LIBS} )
 
 #find_package(OpenCV REQUIRED)
 #include_directories(${OpenCV_INCLUDE_DIRS})
