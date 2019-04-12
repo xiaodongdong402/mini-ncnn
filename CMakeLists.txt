@@ -51,8 +51,9 @@ add_compile_options(-Wsign-compare)
 #aux_source_directory(./src DIR_SRCS)
 #FILE(GLOB_RECURSE DIR_SRCS "./src/*.cpp" "./src/*.h")
 
+aux_source_directory(${CMAKE_SOURCE_DIR}/src/op OP_SRC)
 aux_source_directory(${CMAKE_SOURCE_DIR}/src MAIN_SRC)
-set(DIR_SRCS ${MAIN_SRC})
+set(DIR_SRCS ${OP_SRC} ${MAIN_SRC})
 
 
 find_package(OpenCV REQUIRED)
@@ -65,6 +66,7 @@ link_directories(/usr/local/lib64)
 include_directories(
     src/include
     src/
+    src/op
     /usr/local
     ${NCNN_INCLUDE}/include
 )

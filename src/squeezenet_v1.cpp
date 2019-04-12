@@ -20,11 +20,15 @@
 
 
 #include "logger.h"
+#include "low_precision_convolution.h"
 using namespace std;
+using namespace ncnn;
 
 static int detect_squeezenet(const cv::Mat& bgr, std::vector<float>& cls_scores)
 {
     ncnn::Net squeezenet;
+
+    squeezenet.register_custom_layer("LPConvolution", LPConvolution_layer_creator);
 
 #if NCNN_VULKAN
     squeezenet.use_vulkan_compute = true;

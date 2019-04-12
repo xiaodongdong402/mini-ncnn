@@ -25,7 +25,6 @@
 using namespace std;
 
 
-
 void binary_add(const ncnn::Mat& a, const ncnn::Mat& b, ncnn::Mat& c)
 {
 
